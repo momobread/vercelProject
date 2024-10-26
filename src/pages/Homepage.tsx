@@ -1,13 +1,15 @@
 import Header from "../components/Header";
 import Introduce from "../components/Introduce";
 import Nav from "../components/Nav";
+import { Layout } from "../styles/layout";
 
 function Homepage() {
   return (
-    <div className="h-window flex w-dvw flex-col items-center">
+    <div className="mr-2 flex h-window w-dvw flex-col items-center">
       <Header />
       <Nav />
       <Introduce />
+      {/* 미디어 쿼리 설정하세요 */}
     </div>
   );
 }

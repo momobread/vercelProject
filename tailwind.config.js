@@ -2,6 +2,9 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
+    fontFamily: {
+      basic: ["Dongle", "sans-serif"],
+    },
     extend: {
       height: {
         window: "1080px",
@@ -9,6 +12,9 @@ export default {
       },
       width: {
         window: "1920px",
+      },
+      fontSize: {
+        main: "1.5rem",
       },
     },
   },

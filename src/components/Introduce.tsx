@@ -1,11 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import Button from "./Button";
+import useUser from "../contexts/userContext";
 
 function Introduce() {
   const navigate = useNavigate();
+  const { isLogined } = useUser();
 
   function handleClick() {
-    navigate("/login");
+    isLogined ? navigate("/post") : navigate("/login");
   }
 
   return (

@@ -1,7 +1,6 @@
 import Header from "../components/Header";
 import Introduce from "../components/Introduce";
 import Nav from "../components/Nav";
-import { Layout } from "../styles/layout";
 
 function Homepage() {
   return (

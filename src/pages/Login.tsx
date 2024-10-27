@@ -1,5 +1,11 @@
+import { FormEvent } from "react";
 import Button from "../components/Button";
 import Header from "../components/Header";
+
+function handleKakaoLogin(e: FormEvent<HTMLButtonElement>) {
+  e.preventDefault();
+  window.location.href("");
+}
 
 function Login() {
   return (
@@ -11,7 +17,7 @@ function Login() {
           <input id="pw" className="border border-gray-400" />
         </div>
         <div>
-          <button>
+          <button onClick={handleKakaoLogin}>
             <span>카카오로그인</span>
           </button>
         </div>

@@ -8,13 +8,18 @@ export default {
     extend: {
       height: {
         window: "1080px",
-        header: "10%",
+        header: "13%",
+        login: "620px",
       },
       width: {
         window: "1920px",
+        login: "450px",
       },
       fontSize: {
         main: "1.5rem",
+      },
+      translate: {
+        login: "-50%",
       },
     },
   },

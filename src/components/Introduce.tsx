@@ -19,7 +19,7 @@ function Introduce() {
         그렇다면 좋습니다! 키우고 계신 고양이를 자랑해 보아요
         <br /> 고양이기 세상을 지배한다 냐하
       </div>
-      <Button text="작성하기" onclick={handleClick} />
+      <Button style="basic" text="작성하기" onclick={handleClick} />
     </div>
   );
 }

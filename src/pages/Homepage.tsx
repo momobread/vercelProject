@@ -5,7 +5,8 @@ import { Layout } from "../styles/layout";
 
 function Homepage() {
   return (
-    <div className="mr-2 flex h-window w-dvw flex-col items-center">
+    // <div className="mr-2 flex h-window w-dvw flex-col items-center">
+    <div className="h-full w-full">
       <Header />
       <Nav />
       <Introduce />

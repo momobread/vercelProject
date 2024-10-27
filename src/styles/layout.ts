@@ -15,8 +15,30 @@ export const Layout = styled.div`
       justify-content: flex-start;
       margin-top: 10%;
     }
+    #login form {
+      top: 0;
+      width: 100vw;
+      height: 100%;
+      background-color: antiquewhite;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
   }
   @media screen and (min-width: 601px) {
     font-size: 1.5rem;
+    margin-right: 8px;
+    display: flex;
+    height: 1080px;
+    width: 100dvw;
+    flex-direction: column;
+    align-items: center;
   }
 `;
+
+// export const BasicLayout = styled.div`
+//   @media screen and (min-width: 601px) {
+//     font-size: 1.5rem;
+//   }
+// `;

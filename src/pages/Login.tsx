@@ -5,9 +5,9 @@ import checkLogin from "../hooks/checkLogin";
 import useUser from "../contexts/userContext";
 import { useNavigate } from "react-router-dom";
 
-const KAKAO_URL = import.meta.env.VITE_KAKAO_AUTH_URL;
-const KAKAO_REST_API_KEY = import.meta.env.VITE_KAKAO_RESTAPI_KEY;
-const KAKAO_REDIRECT_URI = import.meta.env.VITE_KAKAO_REDIRECT_URI;
+// const KAKAO_URL = import.meta.env.VITE_KAKAO_AUTH_URL;
+// const KAKAO_REST_API_KEY = import.meta.env.VITE_KAKAO_RESTAPI_KEY;
+// const KAKAO_REDIRECT_URI = import.meta.env.VITE_KAKAO_REDIRECT_URI;
 
 // function handleKakaoLogin(e: FormEvent<HTMLButtonElement>) {
 //   e.preventDefault();

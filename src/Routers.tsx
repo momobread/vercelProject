@@ -13,7 +13,7 @@ function Routers() {
           <Route path="/" element={<Homepage />} />
 
           <Route path="/login" element={<Login />} />
-          <Route path="/login/oauth/kakao" element={<OauthKakao />} />
+          {/* <Route path="/login/oauth/kakao" element={<OauthKakao />} /> */}
 
           <Route path="/join" element={<Join />} />
 

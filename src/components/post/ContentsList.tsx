@@ -1,11 +1,18 @@
-import { type FormEvent, useEffect, useState } from "react";
+import { type FormEvent, useEffect, useRef, useState } from "react";
 import Button from "../Button";
 import Contents from "./Contents";
 import { useNavigate } from "react-router-dom";
+import { PostDataType } from "../../types/Post";
 
-function ContentsList() {
+interface ContentsListProps {
+  setOrder: (order: number) => void;
+}
+
+function ContentsList({ setOrder }: ContentsListProps) {
   const [data, setData] = useState<any>("");
   const navigate = useNavigate();
+  // const [order, setOrder] = useState<number>(0);
+
   useEffect(() => {
     const URL = "http://localhost:8000/post";
     async function fetchPost() {
@@ -15,7 +22,8 @@ function ContentsList() {
         if (!response.ok) throw new Error("잘못된 응답입니다");
 
         if (response.ok) {
-          const data = await response.json();
+          const data = await response.json(); //서버의 데이터가 나옴
+          // console.log(data);
           setData(data);
         }
       } catch (e) {
@@ -25,8 +33,14 @@ function ContentsList() {
     fetchPost();
   }, []);
 
+  useEffect(() => {
+    const order = data.length;
+    setOrder(order);
+  }, [data]);
+
   function handlePostButton(e: FormEvent<HTMLButtonElement>) {
     e.preventDefault();
+
     navigate("/post/write");
   }
 
@@ -34,15 +48,17 @@ function ContentsList() {
     <div className="item flex h-full flex-col items-center bg-red-300">
       <div id="contents" className="h-fit border-y">
         {/*  */}
-        <div className="w-post h-post bg-amber-200">
-          <li className="w-post border-gray-800k flex justify-between border">
+        <div className="h-post w-post bg-amber-200">
+          <li className="border-gray-800k flex w-post justify-between border">
             <span className="w-7">번호</span>
             <span className="w-3/6">내용</span>
             <span className="w-1/6">작성자</span>
             <span className="w-1/6">날짜</span>
           </li>
 
-          <ul className="w-post bg-white">{data && data.map((post) => <Contents post={post} />)}</ul>
+          <ul className="w-post bg-white">
+            {data && data.map((post: PostDataType) => <Contents key={post.id} post={post} />)}
+          </ul>
         </div>
         <div className="bg-white">
           <ul className="flex">

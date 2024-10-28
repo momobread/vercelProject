@@ -2,32 +2,51 @@
   "post": [
     {
       "title": "모모의 블로그",
-      "name": "모모",
+      "nickname": "모모",
       "date": 20241028,
       "order": 1,
-      "content": "모모는에쁘자"
+      "content": "모모는에쁘자",
+      "id": "8a54"
     },
     {
       "title": "레이",
-      "name": "레이",
+      "nickname": "레이",
       "date": 20241028,
       "order": 2,
-      "content": "레이는귀엽다"
+      "content": "레이는귀엽다",
+      "id": "b4ae"
     },
     {
-      "id": "5953",
-      "title": "안녕",
-      "content": "미안"
+      "order": 3,
+      "id": "1730098897773",
+      "title": "모야모야",
+      "content": "모모의 이야기",
+      "nickname": "박모모",
+      "date": "2024-10-28T07:01:37"
     },
     {
-      "id": "b210",
-      "title": "안녕",
-      "content": ""
+      "order": 4,
+      "id": "1730100137177",
+      "title": "시은이",
+      "content": "메롱",
+      "nickname": "시으닝",
+      "date": "2024-10-28"
     },
     {
-      "id": "10ab",
-      "title": "",
-      "content": ""
+      "id": "1730102334567",
+      "title": "우리집 고양이 츄르를 좋아해",
+      "content": "우리집 고양이는 츄를를 업청 좋아합니다!!",
+      "nickname": "박시은",
+      "date": "2024-10-28",
+      "order": 5
+    },
+    {
+      "id": "1730114394453",
+      "title": "사랑해사랑해",
+      "content": "사랑해사랑해사랑해",
+      "nickname": "모모링",
+      "date": "2024-10-28",
+      "order": 6
     }
   ]
 }

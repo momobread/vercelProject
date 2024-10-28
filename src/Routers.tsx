@@ -6,8 +6,11 @@ import Join from "./pages/Join";
 
 import Post from "./pages/Post";
 import PostWrite from "./components/post/PostWrite";
+import { useState } from "react";
+import DetailPost from "./pages/DetailPost";
 
 function Routers() {
+  const [order, setOrder] = useState<number>(0);
   return (
     <UserContextProvider>
       <BrowserRouter>
@@ -19,8 +22,9 @@ function Routers() {
 
           <Route path="/join" element={<Join />} />
 
-          <Route path="/post" element={<Post />} />
-          <Route path="/post/write" element={<PostWrite />} />
+          <Route path="/post" element={<Post setOrder={setOrder} />} />
+          <Route path="/post/:id" element={<DetailPost />} />
+          <Route path="/post/write" element={<PostWrite order={order} />} />
         </Routes>
       </BrowserRouter>
     </UserContextProvider>

@@ -14,20 +14,59 @@ import { useNavigate } from "react-router-dom";
 //   window.location.href = `${KAKAO_URL}&client_id=${KAKAO_REST_API_KEY}&redirect_uri=${KAKAO_REDIRECT_URI}`;
 // }
 
+interface userInfoType {
+  id: string;
+  password: string;
+  nickname: string;
+  userNum: string;
+}
+
 function Login() {
   const { id, password, dispatch, isLogined } = useUser();
+  const [userInfo, setUserInfo] = useState<userInfoType | null>(null);
 
-  const GetStorageId = sessionStorage.getItem("id");
-  const GetStoragePassword = sessionStorage.getItem("password");
+  useEffect(() => {
+    const GetStorageUser = sessionStorage.getItem("user");
+    if (GetStorageUser === null) return;
+    else {
+      setUserInfo(JSON.parse(GetStorageUser)[0]);
+    }
+  }, []);
+
   const navigate = useNavigate();
+  // console.log(userInfo);
+  // const GetStorageId = sessionStorage.getItem("id");
+  // const GetStoragePassword = sessionStorage.getItem("password");
+
+  // function checkUserInfo() {
+  //   if (GetStorageId === id && password === GetStoragePassword) {
+  //     dispatch({ type: "isLogined", isLogined: true });
+  //     navigate("/");
+  //   } else if (GetStorageId === id && password === password) {
+  //     // 잘못된 비밀번호
+  //   } else {
+  //     console.log("회원가입");
+  //     navigate("/join");
+  //   }
+  // }
 
   function checkUserInfo() {
-    if (GetStorageId === id && password === GetStoragePassword) {
+    if (userInfo === null) {
+      navigate("/join");
+      return;
+    }
+
+    console.log(password, typeof password);
+
+    if (userInfo.id === id && password === userInfo.password) {
+      console.log("로그인성공");
       dispatch({ type: "isLogined", isLogined: true });
       navigate("/");
-    } else if (GetStorageId === id && password === password) {
+    } else if (userInfo.id === id && userInfo.password !== password) {
       // 잘못된 비밀번호
+      console.log("ss");
     } else {
+      console.log(userInfo);
       console.log("회원가입");
       navigate("/join");
     }

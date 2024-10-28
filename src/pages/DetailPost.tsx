@@ -1,27 +1,33 @@
 import { useEffect, useState } from "react";
 import { PostDataType } from "../types/Post";
-import { useParams, useSearchParams } from "react-router-dom";
+import { Outlet, useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { fetchPostDetail } from "../utils/getPost";
 import Header from "../components/Header";
 import Nav from "../components/Nav";
 import { userType } from "../types/user";
+import { updatePost } from "../utils/updatePost";
 
 function DetailPost() {
   const params = useParams();
-  const id = params.id;
-  const [user, setUser] = useState<userType>({ id: "", nickname: "", password: "", userNum: "0" });
+  const postId = params.id;
+  const navigate = useNavigate();
+  const currentUrl = useLocation().pathname;
+
+  const [user, setUser] = useState<userType>({ userId: "", nickname: "", password: "", userNum: "0" });
   const [detailPost, setDetailPost] = useState<PostDataType>({
     content: "",
     date: "",
     nickname: "",
     title: "",
-  });
+    id: "",
+  }); //현재글
 
   useEffect(() => {
     const user = sessionStorage.getItem("user");
     async function getDetail() {
-      if (id === undefined) return;
-      const data = await fetchPostDetail(id);
+      if (postId === undefined || null) return;
+      const data = await fetchPostDetail(postId);
+      console.log(postId);
       setDetailPost(data);
     }
     getDetail();
@@ -31,40 +37,53 @@ function DetailPost() {
     }
   }, []);
 
-  const { title, content, date, nickname, order } = detailPost;
+  const { title, content, date, nickname, order, id } = detailPost;
 
   function handleDelete() {
     console.log("삭제하기");
   }
   function handleRevise() {
-    console.log("수정하기");
+    sessionStorage.setItem("post", JSON.stringify(detailPost));
+    navigate("update");
+    // if (postId === undefined) return;
+    // const data = updatePost(postId);
   }
 
   return (
     <div className="h-full w-full">
       <Header />
       <Nav />
-      <div>{nickname}</div>
-      <div>
-        {user.nickname === nickname ? (
-          <>
-            <button onClick={handleDelete} className="bg-red-300">
-              삭제하기
-            </button>
-            <button onClick={handleRevise} className="bg-red-300">
-              수정하기
-            </button>
-          </>
-        ) : (
-          ""
-        )}
-      </div>
+      {!currentUrl.includes("update") ? (
+        <div className="flex h-2/3 w-full justify-center bg-slate-500">
+          <div className="flex w-post flex-col bg-slate-200 p-3">
+            <div>
+              {user.nickname === nickname ? (
+                <>
+                  <button onClick={handleDelete} className="bg-red-300">
+                    삭제하기
+                  </button>
+                  <button onClick={handleRevise} className="bg-red-300">
+                    수정하기
+                  </button>
+                </>
+              ) : (
+                ""
+              )}
+            </div>
+            <span className="text-3xl font-semibold">{title}</span>
+            <span>작성 날짜 :{date}</span>
+            <div>작성자 : {nickname}</div>
 
-      <div>
-        <span>{title}</span>
-        <span>{date}</span>
-        <span>{content}</span>
-      </div>
+            <div>
+              <span>{content}</span>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <Outlet />
+      )}
+
+      {/* param이 update가 있으면 Outlet 조건부렌더링 */}
     </div>
   );
 }

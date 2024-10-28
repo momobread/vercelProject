@@ -3,6 +3,6 @@ export interface PostDataType {
   content: string;
   date: string;
   order?: number;
-  id?: string;
+  id: string;
   nickname: string;
 }

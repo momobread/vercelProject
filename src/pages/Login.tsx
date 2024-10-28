@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import checkLogin from "../hooks/checkLogin";
 import useUser from "../contexts/userContext";
 import { useNavigate } from "react-router-dom";
+import { userType } from "../types/user";
 
 // const KAKAO_URL = import.meta.env.VITE_KAKAO_AUTH_URL;
 // const KAKAO_REST_API_KEY = import.meta.env.VITE_KAKAO_RESTAPI_KEY;
@@ -14,16 +15,16 @@ import { useNavigate } from "react-router-dom";
 //   window.location.href = `${KAKAO_URL}&client_id=${KAKAO_REST_API_KEY}&redirect_uri=${KAKAO_REDIRECT_URI}`;
 // }
 
-interface userInfoType {
-  id: string;
-  password: string;
-  nickname: string;
-  userNum: string;
-}
+// interface userInfoType {
+//   id: string;
+//   password: string;
+//   nickname: string;
+//   userNum: string;
+// }
 
 function Login() {
   const { id, password, dispatch, isLogined } = useUser();
-  const [userInfo, setUserInfo] = useState<userInfoType | null>(null);
+  const [userInfo, setUserInfo] = useState<userType | null>(null);
 
   useEffect(() => {
     const GetStorageUser = sessionStorage.getItem("user");
@@ -58,11 +59,11 @@ function Login() {
 
     console.log(password, typeof password);
 
-    if (userInfo.id === id && password === userInfo.password) {
+    if (userInfo.userId === id && password === userInfo.password) {
       console.log("로그인성공");
       dispatch({ type: "isLogined", isLogined: true });
       navigate("/");
-    } else if (userInfo.id === id && userInfo.password !== password) {
+    } else if (userInfo.userId === id && userInfo.password !== password) {
       // 잘못된 비밀번호
       console.log("ss");
     } else {

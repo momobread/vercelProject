@@ -12,6 +12,7 @@ export async function Post(data: PostDataType) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
+    console.log(response);
     if (!response.ok) throw new Error("응답이 잘못되었습니다");
     postsuccess = true;
   } catch (e) {

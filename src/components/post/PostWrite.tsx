@@ -37,6 +37,7 @@ function PostWrite({ order }: PostWrtie) {
 
   function handlePostSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
     if (Title.current === null || Content.current === null || Nickname.current === null) return;
     const date = new Date().toISOString().split("T")[0];
 

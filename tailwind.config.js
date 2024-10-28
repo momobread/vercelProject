@@ -10,10 +10,12 @@ export default {
         window: "1080px",
         header: "13%",
         login: "620px",
+        post: "500px",
       },
       width: {
         window: "1920px",
         login: "450px",
+        post: "840px",
       },
       fontSize: {
         main: "1.5rem",

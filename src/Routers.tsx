@@ -3,7 +3,9 @@ import Homepage from "./pages/Homepage";
 import Login from "./pages/Login";
 import { UserContextProvider } from "./contexts/userContext";
 import Join from "./pages/Join";
-import OauthKakao from "./components/Login/OauthKakao";
+
+import Post from "./pages/Post";
+import PostWrite from "./components/post/PostWrite";
 
 function Routers() {
   return (
@@ -17,7 +19,8 @@ function Routers() {
 
           <Route path="/join" element={<Join />} />
 
-          <Route path="/post" element={<p>post:작성하기 페이지 입니다</p>} />
+          <Route path="/post" element={<Post />} />
+          <Route path="/post/write" element={<PostWrite />} />
         </Routes>
       </BrowserRouter>
     </UserContextProvider>

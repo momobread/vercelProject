@@ -1,0 +1,33 @@
+{
+  "post": [
+    {
+      "title": "모모의 블로그",
+      "name": "모모",
+      "date": 20241028,
+      "order": 1,
+      "content": "모모는에쁘자"
+    },
+    {
+      "title": "레이",
+      "name": "레이",
+      "date": 20241028,
+      "order": 2,
+      "content": "레이는귀엽다"
+    },
+    {
+      "id": "5953",
+      "title": "안녕",
+      "content": "미안"
+    },
+    {
+      "id": "b210",
+      "title": "안녕",
+      "content": ""
+    },
+    {
+      "id": "10ab",
+      "title": "",
+      "content": ""
+    }
+  ]
+}

@@ -54,10 +54,10 @@ function PostWrite({ order }: PostWrtie) {
   // ////////////////////
 
   return (
-    <div className="h-full w-full">
+    <div className="h-full w-full p-1">
       <Header />
-      <div className="flex w-full justify-center">
-        <form className="flex w-post flex-col gap-3" onSubmit={handlePostSubmit}>
+      <div id="writeformwrap" className="flex w-full justify-center p-1">
+        <form id="writeform" className="flex w-post flex-col gap-3" onSubmit={handlePostSubmit}>
           <label htmlFor="title">제목</label>
           <input id="title" className="border" ref={Title} />
           <label htmlFor="content">내용</label>

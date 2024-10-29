@@ -8,7 +8,7 @@ interface PostProps {
 
 function Post({ setOrder }: PostProps) {
   return (
-    <div className="bg-slate-10 h-full w-full">
+    <div className="bg-slate-10 h-full w-full p-1">
       <Header />
       <Nav />
       <ContentsList setOrder={setOrder} />

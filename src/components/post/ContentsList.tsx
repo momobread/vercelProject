@@ -46,17 +46,17 @@ function ContentsList({ setOrder }: ContentsListProps) {
 
   return (
     <div className="item flex h-full flex-col items-center">
-      <div id="contents" className="mt-8 h-fit border-slate-300">
+      <div id="contents" className="mb-2 mt-8 flex h-fit w-full flex-col items-center gap-2 border-slate-300">
         {/*  */}
-        <div className="h-post w-post">
+        <div id="postformwrap" className="h-post w-post border-b border-gray-800 bg-slate-50">
           <li className="flex w-post justify-between border-y border-gray-800">
-            <span className="w-7">번호</span>
-            <span className="w-3/6">내용</span>
-            <span className="w-1/6">작성자</span>
-            <span className="w-1/6">날짜</span>
+            <span className="w-7 text-center">번호</span>
+            <span className="w-3/6 border-x text-center">내용</span>
+            <span className="w-1/6 text-center">작성자</span>
+            <span className="w-1/6 border-x text-center">날짜</span>
           </li>
 
-          <ul className="w-post bg-white">
+          <ul id="postform" className="w-postp-1">
             {data && data.map((post: PostDataType) => <Contents key={post.id} post={post} />)}
           </ul>
         </div>

@@ -78,8 +78,8 @@ function PostUpdate() {
 
   return (
     <div className="">
-      <div className="flex w-full justify-center">
-        <form className="flex w-post flex-col gap-3" onSubmit={handleUpdateSubmit}>
+      <div id="updateformwrap" className="flex w-full justify-center">
+        <form id="updateform" className="flex w-post flex-col gap-3" onSubmit={handleUpdateSubmit}>
           <label htmlFor="title">제목</label>
           <input id="title" className="border" ref={Title} />
           <label htmlFor="content">내용</label>

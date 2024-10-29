@@ -25,6 +25,25 @@ export const Layout = styled.div`
       align-items: center;
       justify-content: center;
     }
+    #postform {
+      width: fit-content;
+    }
+    #postformwrap {
+      width: inherit;
+      li {
+        width: inherit;
+      }
+    }
+    #postform {
+      width: inherit;
+    }
+
+    #updateform {
+      width: inherit;
+    }
+    #writeform {
+      width: inherit;
+    }
   }
   @media screen and (min-width: 601px) {
     font-size: 1.5rem;

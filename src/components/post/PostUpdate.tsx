@@ -5,12 +5,19 @@ import { updatePost } from "../../utils/updatePost";
 import { PostDataType } from "../../types/Post";
 
 function PostUpdate() {
-  const data = JSON.parse(sessionStorage.getItem("post"));
+  const [data, setData] = useState<PostDataType>({
+    content: "",
+    date: "",
+    id: "",
+    nickname: "",
+    title: "",
+  });
+
   const postId = data.id; //데이터 아이디
   const navigate = useNavigate();
   const order = data.order;
-  console.log(data);
-  console.log(postId);
+  // console.log(data);
+  // console.log(postId);
 
   const Title = useRef<HTMLInputElement>(null);
   const Content = useRef<HTMLTextAreaElement>(null);
@@ -18,13 +25,22 @@ function PostUpdate() {
 
   const [updateData, setUpdateData] = useState<PostDataType | null>(null);
   const [isUpdateSuccess, setIsUpdateSuccess] = useState<boolean>(false);
+  const [flag, setFlag] = useState<boolean>(false);
+
+  useEffect(() => {
+    const sessiondata = sessionStorage.getItem("post");
+    if (sessiondata === null) return;
+    setData(JSON.parse(sessiondata));
+    setFlag(true);
+  }, []);
 
   useEffect(() => {
     if (Title.current === null || Content.current === null || Nickname.current === null) return;
+
     Title.current.value = data.title;
     Content.current.value = data.content;
     Nickname.current.value = data.nickname;
-  }, []);
+  }, [flag]);
 
   useEffect(() => {
     async function UpdateSuccess() {

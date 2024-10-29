@@ -114,7 +114,7 @@ function Login() {
         </div>
         <div className="flex w-3/4 flex-col gap-1">
           <Button style="long" text="로그인" onclick={(e) => checkInform(e)} />
-          <Button style="long" text="회원가입" />
+          <Button style="long" text="회원가입" onclick={(e) => navigate("/join")} />
           <Button style="long" text="아이디/비밀번호 찾기" />
         </div>
       </form>

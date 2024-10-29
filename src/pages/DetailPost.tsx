@@ -6,6 +6,7 @@ import Header from "../components/Header";
 import Nav from "../components/Nav";
 import { userType } from "../types/user";
 import { updatePost } from "../utils/updatePost";
+import { deletePost } from "../utils/deletePost";
 
 function DetailPost() {
   const params = useParams();
@@ -27,7 +28,7 @@ function DetailPost() {
     async function getDetail() {
       if (postId === undefined || null) return;
       const data = await fetchPostDetail(postId);
-      console.log(postId);
+      // console.log(postId);
       setDetailPost(data);
     }
     getDetail();
@@ -40,7 +41,10 @@ function DetailPost() {
   const { title, content, date, nickname, order, id } = detailPost;
 
   function handleDelete() {
-    console.log("삭제하기");
+    if (postId === undefined) return;
+    const deletesuccess = deletePost(postId);
+    if (!deletesuccess) return;
+    navigate("/post");
   }
   function handleRevise() {
     sessionStorage.setItem("post", JSON.stringify(detailPost));

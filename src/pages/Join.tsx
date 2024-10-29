@@ -16,7 +16,7 @@ function Join() {
         <p>아이디 : momo</p>
         <p>비밀번호 : 1234</p>
       </div>
-      <Button text="회원가입 완료" style="basic" onclick={() => navigate("/")} />
+      <Button text="회원가입 완료" style="basic" onclick={() => navigate("/login")} />
     </div>
   );
 }

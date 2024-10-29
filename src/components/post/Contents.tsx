@@ -16,7 +16,7 @@ function Contents({ post }: ContentsType) {
   return (
     <>
       <li onClick={handleDetail} className="border-gray-800k flex w-post justify-between border">
-        <span className="w-5 text-center">{order}</span>
+        <span className="w-7 text-center">{order}</span>
         <span className="w-3/6 border-x">{title}</span>
         <span className="w-1/6">{nickname}</span>
         <span className="w-1/6 border-x">{date}</span>

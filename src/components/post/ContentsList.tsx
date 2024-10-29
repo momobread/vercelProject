@@ -40,7 +40,6 @@ function ContentsList({ setOrder }: ContentsListProps) {
 
   function handlePostButton(e: FormEvent<HTMLButtonElement>) {
     e.preventDefault();
-
     navigate("/post/write");
   }
 

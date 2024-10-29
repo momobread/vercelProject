@@ -12,6 +12,7 @@ import PostUpdate from "./components/post/PostUpdate";
 
 function Routers() {
   const [order, setOrder] = useState<number>(0);
+
   return (
     <UserContextProvider>
       <BrowserRouter>
@@ -24,7 +25,7 @@ function Routers() {
           <Route path="/join" element={<Join />} />
 
           <Route path="/post" element={<Post setOrder={setOrder} />} />
-          <Route path="/post/:id" element={<DetailPost />}>
+          <Route path="/post/:id" element={<DetailPost order={order} />}>
             <Route path="update" element={<PostUpdate />} />
           </Route>
           <Route path="/post/write" element={<PostWrite order={order} />} />

@@ -91,7 +91,7 @@ function PostUpdate() {
           ></textarea>
           <label htmlFor="user">작성자</label>
           <input id="user" className="border" ref={Nickname} />
-          <Button text="작성하기" style="basic" />
+          <Button text="수정하기" style="basic" />
         </form>
       </div>
     </div>

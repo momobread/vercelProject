@@ -8,7 +8,11 @@ import { userType } from "../types/user";
 import { updatePost } from "../utils/updatePost";
 import { deletePost } from "../utils/deletePost";
 
-function DetailPost() {
+interface PostWrtie {
+  order: number;
+}
+
+function DetailPost({ order }: PostWrtie) {
   const params = useParams();
   const postId = params.id;
   const navigate = useNavigate();
@@ -38,11 +42,11 @@ function DetailPost() {
     }
   }, []);
 
-  const { title, content, date, nickname, order, id } = detailPost;
+  const { title, content, date, nickname, order: dataOrder, id } = detailPost;
 
   function handleDelete() {
     if (postId === undefined) return;
-    const deletesuccess = deletePost(postId);
+    const deletesuccess = deletePost(postId, order);
     if (!deletesuccess) return;
     navigate("/post");
   }

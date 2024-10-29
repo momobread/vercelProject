@@ -11,6 +11,7 @@ interface PostWrtie {
 
 function PostWrite({ order }: PostWrtie) {
   console.log(order);
+
   const Title = useRef<HTMLInputElement>(null);
   const Content = useRef<HTMLTextAreaElement>(null);
   const Nickname = useRef<HTMLInputElement>(null);

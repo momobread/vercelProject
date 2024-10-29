@@ -16,6 +16,7 @@ export default {
         window: "1920px",
         login: "450px",
         post: "840px",
+        join: "400px",
       },
       fontSize: {
         main: "1.5rem",

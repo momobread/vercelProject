@@ -14,10 +14,10 @@ function ContentsList({ setOrder }: ContentsListProps) {
   // const [order, setOrder] = useState<number>(0);
 
   useEffect(() => {
-    const URL = "http://localhost:8000/post";
+    const POSTURL = import.meta.env.VITE_POST_URL;
     async function fetchPost() {
       try {
-        const response = await fetch(URL);
+        const response = await fetch(POSTURL);
 
         if (!response.ok) throw new Error("잘못된 응답입니다");
 

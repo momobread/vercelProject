@@ -2,12 +2,12 @@ import { PostDataType } from "../types/Post";
 
 export async function Post(data: PostDataType) {
   let postsuccess = false;
-
+  const POSTURL = import.meta.env.VITE_POST_URL;
   // console.log(data);
   if (data.title === "" || data.content === "" || data.date === "" || data.nickname === "") return postsuccess;
 
   try {
-    const response = await fetch("http://localhost:8000/post", {
+    const response = await fetch(POSTURL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),

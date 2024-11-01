@@ -5,11 +5,11 @@ interface ButtonProps {
 }
 
 const basic = `
-h-10 w-fit rounded-md bg-amber-200 px-7
+h-10 w-fit rounded-md bg-highlight px-7 font-hightlight 
  
 `;
 const long = `
-   w-full rounded-md bg-amber-200 px-7 h-10 
+   w-full rounded-md bg-highlight px-7 h-10 font-hightlight
 `;
 
 function Button({ text, onclick, style }: ButtonProps) {

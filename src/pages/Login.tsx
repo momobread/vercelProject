@@ -5,6 +5,7 @@ import checkLogin from "../hooks/checkLogin";
 import useUser from "../contexts/userContext";
 import { useNavigate } from "react-router-dom";
 import { userType } from "../types/user";
+import userFetch from "../utils/user/fetch";
 
 // const KAKAO_URL = import.meta.env.VITE_KAKAO_AUTH_URL;
 // const KAKAO_REST_API_KEY = import.meta.env.VITE_KAKAO_RESTAPI_KEY;
@@ -26,55 +27,49 @@ function Login() {
   const { id, password, dispatch, isLogined } = useUser();
   const [userInfo, setUserInfo] = useState<userType | null>(null);
 
-  useEffect(() => {
-    const GetStorageUser = sessionStorage.getItem("user");
-    if (GetStorageUser === null) return;
-    else {
-      setUserInfo(JSON.parse(GetStorageUser)[0]);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const GetStorageUser = sessionStorage.getItem("user");
+  //   if (GetStorageUser === null) return;
+  //   else {
+  //     setUserInfo(JSON.parse(GetStorageUser)[0]);
+  //   }
+  // }, []);
 
   const navigate = useNavigate();
-  // console.log(userInfo);
-  // const GetStorageId = sessionStorage.getItem("id");
-  // const GetStoragePassword = sessionStorage.getItem("password");
-
-  // function checkUserInfo() {
-  //   if (GetStorageId === id && password === GetStoragePassword) {
-  //     dispatch({ type: "isLogined", isLogined: true });
-  //     navigate("/");
-  //   } else if (GetStorageId === id && password === password) {
-  //     // 잘못된 비밀번호
-  //   } else {
-  //     console.log("회원가입");
-  //     navigate("/join");
-  //   }
-  // }
+  console.log(id);
 
   function checkUserInfo() {
-    if (userInfo === null) {
-      navigate("/join");
-      return;
-    }
+    // if (userInfo === null) {
+    //   navigate("/join");
+    //   return;
+    // }
+    // console.log(password);
+    //db 아이디 패스워드 검사
+    if (id === null || id === "") return; //아이디를 입력해 주세요
+    if (password === null || password === "") throw new Error("아이디가 없습니다"); //비밀번호를 입력해주세요
 
-    console.log(password, typeof password);
+    //그리고 아이디는 몇자이상인지 그것도 체크
+    // 둘다없는 경우를 추가해 주세요
 
-    if (userInfo.userId === id && password === userInfo.password) {
-      console.log("로그인성공");
-      dispatch({ type: "isLogined", isLogined: true });
-      navigate("/");
-    } else if (userInfo.userId === id && userInfo.password !== password) {
-      // 잘못된 비밀번호
-      console.log("ss");
-    } else {
-      console.log(userInfo);
-      console.log("회원가입");
-      navigate("/join");
-    }
+    userFetch(id, password);
+
+    // if (userInfo.userId === id && password === userInfo.password) {
+    //   console.log("로그인성공");
+    //   dispatch({ type: "isLogined", isLogined: true });
+    //   navigate("/");
+    // } else if (userInfo.userId === id && userInfo.password !== password) {
+    //   // 잘못된 비밀번호
+    //   console.log("ss");
+    // } else {
+    //   console.log(userInfo);
+    //   console.log("회원가입");
+    //   navigate("/join");
+    // }
   }
 
   function checkInform(e: FormEvent<HTMLButtonElement>) {
     e.preventDefault();
+
     checkUserInfo();
 
     if (isLogined) {

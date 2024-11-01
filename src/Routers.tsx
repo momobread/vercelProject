@@ -9,6 +9,7 @@ import PostWrite from "./components/post/PostWrite";
 import { useState } from "react";
 import DetailPost from "./pages/DetailPost";
 import PostUpdate from "./components/post/PostUpdate";
+import NotPost from "./components/notFound/NotPost";
 
 function Routers() {
   const [order, setOrder] = useState<number>(0);
@@ -29,6 +30,9 @@ function Routers() {
             <Route path="update" element={<PostUpdate />} />
           </Route>
           <Route path="/post/write" element={<PostWrite order={order} />} />
+
+          <Route path="*" element={<p>PAGE NOT FOUND</p>} />
+          <Route path="/notpost" element={<NotPost />} />
         </Routes>
       </BrowserRouter>
     </UserContextProvider>

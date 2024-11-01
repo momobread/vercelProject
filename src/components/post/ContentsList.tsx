@@ -6,33 +6,12 @@ import { PostDataType } from "../../types/Post";
 
 interface ContentsListProps {
   setOrder: (order: number) => void;
+  data: PostDataType[];
 }
 
-function ContentsList({ setOrder }: ContentsListProps) {
-  const [data, setData] = useState<any>("");
+function ContentsList({ setOrder, data }: ContentsListProps) {
   const navigate = useNavigate();
-  // const [order, setOrder] = useState<number>(0);
-
-  useEffect(() => {
-    const POSTURL = import.meta.env.VITE_POST_URL;
-    async function fetchPost() {
-      try {
-        const response = await fetch(POSTURL);
-
-        if (!response.ok) throw new Error("잘못된 응답입니다");
-
-        if (response.ok) {
-          const data = await response.json(); //서버의 데이터가 나옴
-          // console.log(data);
-          setData(data);
-        }
-      } catch (e) {
-        console.log(e);
-      }
-    }
-    fetchPost();
-  }, []);
-
+  console.log(data);
   useEffect(() => {
     const order = data.length;
     setOrder(order);
@@ -44,32 +23,36 @@ function ContentsList({ setOrder }: ContentsListProps) {
   }
 
   return (
-    <div className="item flex h-full flex-col items-center">
-      <div id="contents" className="mb-2 mt-8 flex h-fit w-full flex-col items-center gap-2 border-slate-300">
-        {/*  */}
+    <div className="item flex h-full flex-col items-center text-base">
+      <div id="contents" className="mt-8 flex h-3/4 w-full flex-col items-center gap-2">
+        {/* nav */}
         <div id="postformwrap" className="h-post w-post border-b border-gray-800 bg-slate-50">
-          <li className="flex w-post justify-between border-y border-gray-800">
-            <span className="w-7 text-center">번호</span>
-            <span className="w-3/6 border-x text-center">내용</span>
-            <span className="w-1/6 text-center">작성자</span>
-            <span className="w-1/6 border-x text-center">날짜</span>
+          <li className="flex h-10 w-post justify-between border-y border-gray-800 font-semibold">
+            <span className="w-1/12 text-center text-sm font-semibold leading-9">번호</span>
+            <span className="w-3/6 border-x text-center font-semibold leading-9">내용</span>
+            <span className="w-1/6 text-center font-semibold leading-9">작성자</span>
+            <span className="w-1/6 border-x text-center font-semibold leading-9">날짜</span>
           </li>
-
-          <ul id="postform" className="w-postp-1">
-            {data && data.map((post: PostDataType) => <Contents key={post.id} post={post} />)}
-          </ul>
+          {/* content */}
+          <div className="mb-2 h-post w-post border-b border-gray-800 bg-white" id="postform">
+            <ul className="w-full">
+              {data && data.map((post: PostDataType) => <Contents key={post.id} post={post} />)}
+            </ul>
+          </div>
+          <Button text="글쓰기" style="basic" onclick={(e) => handlePostButton(e)} />
         </div>
-        <div className="border-y border-slate-600 bg-white">
+        {/* number */}
+        {/* <div className="border-y border-slate-600 bg-white">
           <ul className="flex justify-center">
             <li>1</li>
             <li>2</li>
             <li>3</li>
             <li>4</li>
           </ul>
-        </div>
+        </div> */}
         {/*  */}
       </div>
-      <Button text="글쓰기" style="basic" onclick={(e) => handlePostButton(e)} />
+      {/* <Button text="글쓰기" style="basic" onclick={(e) => handlePostButton(e)} /> */}
     </div>
   );
 }

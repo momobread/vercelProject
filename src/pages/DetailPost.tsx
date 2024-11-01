@@ -7,6 +7,7 @@ import Nav from "../components/Nav";
 import { userType } from "../types/user";
 import { updatePost } from "../utils/updatePost";
 import { deletePost } from "../utils/deletePost";
+import DotLoader from "react-spinners/DotLoader";
 
 interface PostWrtie {
   order: number;
@@ -17,8 +18,9 @@ function DetailPost({ order }: PostWrtie) {
   const postId = params.id;
   const navigate = useNavigate();
   const currentUrl = useLocation().pathname;
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const [user, setUser] = useState<userType>({ userId: "", nickname: "", password: "", userNum: "0" });
+  const [user, setUser] = useState<userType>({ userId: "", nickname: "", password: "", userNum: 0 });
   const [detailPost, setDetailPost] = useState<PostDataType>({
     content: "",
     date: "",
@@ -31,8 +33,11 @@ function DetailPost({ order }: PostWrtie) {
     const user = sessionStorage.getItem("user");
     async function getDetail() {
       if (postId === undefined || null) return;
-      const data = await fetchPostDetail(postId);
-      // console.log(postId);
+      const data = await fetchPostDetail(postId, setIsLoading);
+      if (!data) {
+        navigate("/notpost");
+        return;
+      }
       setDetailPost(data);
     }
     getDetail();
@@ -58,12 +63,13 @@ function DetailPost({ order }: PostWrtie) {
   }
 
   return (
-    <div className="h-full w-full p-1">
+    <div className="h-full w-full">
       <Header />
       <Nav />
+
       {!currentUrl.includes("update") ? (
         <div className="flex h-2/3 w-full justify-center bg-slate-500">
-          <div className="flex w-post flex-col bg-slate-200 p-3">
+          <div className="flex w-post flex-col bg-white p-3">
             <div>
               {user.nickname === nickname ? (
                 <>
@@ -78,12 +84,30 @@ function DetailPost({ order }: PostWrtie) {
                 ""
               )}
             </div>
-            <span className="text-3xl font-semibold">{title}</span>
-            <span>작성 날짜 :{date}</span>
-            <div>작성자 : {nickname}</div>
-
             <div>
-              <span>{content}</span>
+              {!isLoading ? (
+                <>
+                  <p className="text-3xl font-semibold">{title}</p>
+                  <span>작성 날짜 :{date}</span>
+                  <div>작성자 : {nickname}</div>
+
+                  <div>
+                    <span>{content}</span>
+                  </div>
+                </>
+              ) : (
+                <div className="top-10 flex w-full justify-center">
+                  <DotLoader color="#20cbd3" size={120} />
+                </div>
+              )}
+              {/* // <p className="text-3xl font-semibold">{title}</p>
+              // <span>작성 날짜 :{date}</span>
+              // <div>작성자 : {nickname}</div>
+              //{" "}
+              <div>
+                // <span>{content}</span>
+                //{" "}
+              </div> */}
             </div>
           </div>
         </div>

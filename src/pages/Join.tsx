@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import Header from "../components/Header";
-import { useRef, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
+import { userType } from "../types/user";
+import { userCreate } from "../utils/user/create";
 
 function Join() {
   const userInform = [{ userId: "momo", password: "1234", userNum: "1", nickname: "모모링" }];
@@ -11,11 +13,30 @@ function Join() {
   const IdInput = useRef<HTMLInputElement>(null);
   const PasswordInput = useRef<HTMLInputElement>(null);
   const NicknameInput = useRef<HTMLInputElement>(null);
-  const [userNewInform, setUserNewInform] = useState();
+  const [userNewInform, setUserNewInform] = useState<userType | null>(null);
 
   function handleJoinSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
+    if (NicknameInput.current === null || PasswordInput.current === null || IdInput.current === null) return;
+    setUserNewInform({
+      nickname: NicknameInput.current.value,
+      password: PasswordInput.current.value,
+      userId: IdInput.current.value,
+      userNum: 1,
+    });
   }
+
+  useEffect(() => {
+    async function create() {
+      if (userNewInform === null) return;
+      const createSuccess = await userCreate(userNewInform);
+      if (!createSuccess) return;
+      navigate("/login");
+    }
+
+    create();
+  }, [userNewInform]);
 
   return (
     <div className="flex h-full w-full flex-col items-center bg-slate-50">
@@ -29,7 +50,7 @@ function Join() {
           <input id="password" className="border" ref={PasswordInput} />
           <label htmlFor="nickname">별명</label>
           <input id="nickname" className="border" ref={NicknameInput} />
-          <Button text="작성하기" style="basic" onclick={(e) => navigate("/login")} />
+          <Button text="작성하기" style="basic" />
         </form>
       </div>
     </div>

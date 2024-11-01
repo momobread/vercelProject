@@ -12,7 +12,7 @@ function Introduce() {
 
   return (
     <div id="home_Intro" className="flex h-1/2 w-full flex-col items-center justify-center gap-3">
-      <div className="h-10 w-fit rounded-xl border-b-2 border-r-2 border-red-300 px-3 text-center leading-9">
+      <div className="font-hightlight h-10 w-fit rounded-md border px-3 text-center leading-9">
         우리집 고양이를 자랑해보세요
       </div>
       <div className="h-fit w-96 p-2 text-center leading-7">
